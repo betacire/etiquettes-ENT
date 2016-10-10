@@ -8,9 +8,7 @@
 #pragma compile(ProductName, e-primo - Étiquettes identifiants)
 #pragma compile(ProductVersion, 1.0)
 #pragma compile(FileVersion, 1.0.0.0, 1.0.0.0) ; The last parameter is optional.
-#pragma compile(LegalCopyright, © Béatrice Arnou)
-;#pragma compile(LegalTrademarks, '"Trademark something, and some text in "quotes" etc...')
-#pragma compile(CompanyName, 'BA (TICE 49)')
+#pragma compile(CompanyName, 'Béatrice Arnou')
 
 #include <File.au3>
 #include <Array.au3>
