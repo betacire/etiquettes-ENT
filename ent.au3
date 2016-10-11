@@ -1,11 +1,11 @@
 #pragma compile(Out, ent-etiquettes.exe)
 ; Uncomment to use the following icon. Make sure the file path is correct and matches the installation of your AutoIt install path.
 #pragma compile(Icon, .\ent.ico)
-#pragma compile(FileDescription,Générer des étiquettes pour les identifiants de l'ENT)
-#pragma compile(ProductName, ENT - Étiquettes identifiants)
+#pragma compile(FileDescription,GÃ©nÃ©rer des Ã©tiquettes pour les identifiants de l'ENT)
+#pragma compile(ProductName, ENT - Ã‰tiquettes identifiants)
 #pragma compile(ProductVersion, 1.0)
 #pragma compile(FileVersion, 1.0.0.0, 1.0.0.0) ; The last parameter is optional.
-#pragma compile(CompanyName, 'Béatrice Arnou')
+#pragma compile(CompanyName, 'BÃ©atrice Arnou')
 
 #include <File.au3>
 #include <Array.au3>
@@ -18,11 +18,11 @@
 
 Main()
 
-; Création de la fenêtre principale
+; CrÃ©ation de la fenÃªtre principale
 Func Main()
     Local $fenetre
 
-    GUICreate("Étiquettes identifiants ENT",800,604)
+    GUICreate("Ã‰tiquettes identifiants ENT",800,604)
 	GUISetBkColor(0xCCCCCC)
 	GUISetIcon("ent.ico")
 
@@ -34,22 +34,22 @@ Func Main()
 	GUICtrlSetBkColor(-1, $iBkClr)
 	GUICtrlSetFont(-1, 10, 600)
 
-   ; Juste pour la déco (dessiner un cadre de couleur différente)
+   ; Juste pour la dÃ©co (dessiner un cadre de couleur diffÃ©rente)
     Local $ButtonDeco1 = GUICtrlCreateButton("", 4, 26, 792, 70)
     GUICtrlSetBkColor($ButtonDeco1, $iBkClr)
     GUICtrlSetState($ButtonDeco1, $GUI_DISABLE)
 
-	Local $Label_URL1 = GUICtrlCreateLabel("Si vous souhaitez que l'adresse du portail public soit imprimée sur l'étiquette, saisissez-la ici :", 10, 36,330,40,$SS_RIGHT)
+	Local $Label_URL1 = GUICtrlCreateLabel("Si vous souhaitez que l'adresse du portail public soit imprimÃ©e sur l'Ã©tiquette, saisissez-la ici :", 10, 36,330,40,$SS_RIGHT)
 	GUICtrlSetFont($Label_URL1, 10)
 	GUICtrlSetBkColor($Label_URL1, $iBkClr)
 
-    ; Récupération de l'url du portail public si elle a déjà été enregistrée
+    ; RÃ©cupÃ©ration de l'url du portail public si elle a dÃ©jÃ  Ã©tÃ© enregistrÃ©e
 	$iniFile = @LocalAppDataDir & "\" & "etiq-ent.ini"
     $iniURL = IniRead($iniFile, "General", "URL", "http://")
 	Local $URL = GUICtrlCreateInput($iniURL, 350, 50, 435, 20,$ES_LOWERCASE)
 
-       ; Infos nécessaires pour la génération des étiquettse
-	GUICtrlCreateGroup(" 2 - Sélectionnez le fichier contenant les identifiants ",3,100,794,500)
+       ; Infos nÃ©cessaires pour la gÃ©nÃ©ration des Ã©tiquettse
+	GUICtrlCreateGroup(" 2 - SÃ©lectionnez le fichier contenant les identifiants ",3,100,794,500)
 	GUICtrlSetBkColor(-1, $iBkClr)
 	GUICtrlSetFont(-1, 10, 600)
 
@@ -58,30 +58,30 @@ Func Main()
     GUICtrlSetState($ButtonFalse1, $GUI_DISABLE)
 
 	; Explications
-	$explications = "Le fichier doit avoir été généré depuis l'interface d'administration de l'ENT (Administration / Droits d'utilisateurs et droits d'accès)." & Chr(10) & "Il doit être enregistré au format .txt et doit contenir les informations suivantes :"
+	$explications = "Le fichier doit avoir Ã©tÃ© gÃ©nÃ©rÃ© depuis l'interface d'administration de l'ENT (Administration / Droits d'utilisateurs et droits d'accÃ¨s)." & Chr(10) & "Il doit Ãªtre enregistrÃ© au format .txt et doit contenir les informations suivantes :"
     Local $Label_Explications = GUICtrlCreateLabel($explications, 16, 126,770,40,$SS_LEFT)
 	GUICtrlSetFont($Label_Explications, 10)
 	GUICtrlSetBkColor($Label_Explications, $iBkClr)
 
-	; Capture d'écran
+	; Capture d'Ã©cran
 	GUICtrlCreatePic("identifiants.jpg", 123, 166,545,189)
 
 	; Explications 2
-	$explications2 = "La première ligne doit obligatoirement contenir les noms des colonnes (Nom   Nom d'utilisateur   Mot de passe    Adresse e-mail)." & Chr(10) & "Ne modifiez pas l'espacement des mots (pas de suppression des espaces)."
+	$explications2 = "La premiÃ¨re ligne doit obligatoirement contenir les noms des colonnes (Nom   Nom d'utilisateur   Mot de passe    Adresse e-mail)." & Chr(10) & "Ne modifiez pas l'espacement des mots (pas de suppression des espaces)."
     Local $Label_Explications2 = GUICtrlCreateLabel($explications2, 16, 366,770,40,$SS_LEFT)
 	GUICtrlSetFont($Label_Explications2, 10)
 	GUICtrlSetBkColor($Label_Explications2, $iBkClr)
 
-	; Tutoriel vidéo
-	$tuto = "Pour plus d'explications concernant la préparation du fichier, consultez le tutoriel vidéo ci-contre." & Chr(10) & Chr(10) & "Si votre fichier est prêt, cliquez sur ""Générer les étiquettes""."
+	; Tutoriel vidÃ©o
+	$tuto = "Pour plus d'explications concernant la prÃ©paration du fichier, consultez le tutoriel vidÃ©o ci-contre." & Chr(10) & Chr(10) & "Si votre fichier est prÃªt, cliquez sur ""GÃ©nÃ©rer les Ã©tiquettes""."
     Local $Label_Tuto = GUICtrlCreateLabel($tuto, 16, 412,480,70,$SS_LEFT)
 	GUICtrlSetFont($Label_Tuto, 10)
 	GUICtrlSetBkColor($Label_Tuto, $iBkClr)
 
-	; Tuto vidéo
+	; Tuto vidÃ©o
 	Local $idPic = GUICtrlCreatePic("tuto.jpg", 520, 400,252,136)
 
-	Local $Button_Convertir = GUICtrlCreateButton("Générer les étiquettes", 130, 494, 250, 40)
+	Local $Button_Convertir = GUICtrlCreateButton("GÃ©nÃ©rer les Ã©tiquettes", 130, 494, 250, 40)
 	GUICtrlSetFont($Button_Convertir, 13, 600)
     GUICtrlSetResizing($Button_Convertir, $GUI_DOCKBOTTOM + $GUI_DOCKSIZE + $GUI_DOCKHCENTER)
 
@@ -93,7 +93,7 @@ Func Main()
 	GUISetState(@SW_SHOW)
 
  	If not FileExists(@ScriptDir & "\ent.src") or not FileExists(@ScriptDir & "\php-win.exe") or not FileExists(@ScriptDir & "\php5ts.dll") Then
-	   MsgBox(16, "Erreur", "Le programme ne trouve pas certains fichiers indispensables à son fonctionnement." & @CRLF & "Veuillez réinstaller le logiciel.")
+	   MsgBox(16, "Erreur", "Le programme ne trouve pas certains fichiers indispensables Ã  son fonctionnement." & @CRLF & "Veuillez rÃ©installer le logiciel.")
 	   exit
 	Endif
 
@@ -104,7 +104,7 @@ Func Main()
             Case $msg = $GUI_EVENT_CLOSE
                 ExitLoop
 			Case $msg = $idPic
-                ShellExecute("https://mediacad.ac-nantes.fr/m/1018/d/i","","","open")
+                ShellExecute("http://url_du_tuto","","","open")
 			Case $msg = $Button_Convertir
                 ConvertitFichier(GUICtrlRead($URL))
             Case $msg = $Button_Quitter
@@ -117,11 +117,11 @@ EndFunc   ;==>Main
 
 Func ConvertitFichier($url)
     Local $result
-    Local $message = "Où se trouve le fichier contenant les identifiants ?"
+    Local $message = "OÃ¹ se trouve le fichier contenant les identifiants ?"
     Local $var = FileOpenDialog($message, "", "identifiants.txt (*.txt)")
 
     If @error Then
-       MsgBox(48, "Sélection de fichier", "Vous devez indiquer où se trouve le fichier contenant les identifiants !")
+       MsgBox(48, "SÃ©lection de fichier", "Vous devez indiquer oÃ¹ se trouve le fichier contenant les identifiants !")
     Else
 	  Local Const $sFilePath = _WinAPI_GetTempFileName(@TempDir)
       $result = FileCopy ($var,  $sFilePath,1)
@@ -129,7 +129,7 @@ Func ConvertitFichier($url)
   	  Local $identifiants =  "etiquettes-ENT-" & @YEAR & ".pdf"
 
 	  ; Enregistrement dans un fichier ini de l'adresse du portail public.
-	  ; Si l'info n'est pas renseignée, on supprime le fichier.
+	  ; Si l'info n'est pas renseignÃ©e, on supprime le fichier.
       $iniFile = @LocalAppDataDir & "\" & "etiq-ent.ini"
       If ($url <> 'http://') Then
 	     $url_portail_public = $url
@@ -151,7 +151,7 @@ Func ConvertitFichier($url)
              Sleep(100)
              ProgressSet($i, $i & " %")
           Next
-          ProgressSet(100, "100%", "Terminé")
+          ProgressSet(100, "100%", "TerminÃ©")
           Sleep(1000)
           ProgressOff()
 
@@ -167,7 +167,7 @@ Func ConvertitFichier($url)
 	      Local $sFileName = FileSaveDialog("Enregistrer sous...", @DesktopDir, "(*.pdf)", 18, $identifiants)
           If @error Then Exit
  		  $result = FileMove(@TempDir & "\" & $identifiants, $sFileName,1)
-          $Answer = MsgBox(36,"Identifiants ENT","Les étiquettes sont disponibles dans le fichier : " & $sFileName & ". " & @CRLF & @CRLF & "Voulez-vous l'ouvrir maintenant ?")
+          $Answer = MsgBox(36,"Identifiants ENT","Les Ã©tiquettes sont disponibles dans le fichier : " & $sFileName & ". " & @CRLF & @CRLF & "Voulez-vous l'ouvrir maintenant ?")
  		  If $Answer = $IDYES Then
 			  ShellExecute($sFileName,"",@TempDir,"open")
           Endif
@@ -183,7 +183,7 @@ Func ConvertitFichier($url)
    	      Endif
 
 	   Else
-	      MsgBox(16,"Identifiants ENT","Erreur !!!  Le fichier envoyé est-il le bon ?")
-       Endif  ; ==> Si le fichier $identifiants a bien été généré.
+	      MsgBox(16,"Identifiants ENT","Erreur !!!  Le fichier envoyÃ© est-il le bon ?")
+       Endif  ; ==> Si le fichier $identifiants a bien Ã©tÃ© gÃ©nÃ©rÃ©.
    Endif  ; ==> Aucun fichier choisi
 EndFunc   ; ==> ConvertitFichier
